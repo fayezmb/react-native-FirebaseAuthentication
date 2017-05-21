@@ -5,7 +5,7 @@ import { Header, Button, Spinner } from './components/common';
 import LoginForm from './components/LoginForm';
 
 class App extends Component {
-
+state= {loggedin : null}
 
   componentWillMount() {
     firebase.initializeApp({
@@ -15,8 +15,24 @@ class App extends Component {
       storageBucket: 'authentication-70a18.appspot.com',
       messagingSenderId: '682333809338'
     });
+    firebase.auth().onAuthStateChanged((user) => {
+if(user){
+this.setState({loggedin: true});
+}
+else{
+  this.setState({loggedin: false})
+}
+    });
   }
-
+renderContent() {
+  switch (this.state.loggedin){
+    case true:
+    return <Button onPress={() => firebase.auth().signOut()}> dat logout though </Button>
+    case false:
+    return <LoginForm />;
+    default:
+    return <Spinner size="large" />;
+}}
   render() {
     return (
       <View>

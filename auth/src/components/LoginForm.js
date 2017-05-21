@@ -15,7 +15,7 @@ class LoginForm extends Component {
       .then(this.onLoginSuccess.bind(this))
       .catch(this.onLoginFail.bind(this));
       });
-    
+
   }
   onLoginFail(){
     this.setState({error: 'Authentication Failed', loading: false})
@@ -62,6 +62,7 @@ class LoginForm extends Component {
       {this.state.error}
       </Text>
       <CardSection>
+      {this.renderButton()}
       </CardSection>
       </Card>
     );
