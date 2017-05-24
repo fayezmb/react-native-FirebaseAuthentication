@@ -4,12 +4,6 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import App from './src/App';
+import {  AppRegistry} from 'react-native';
+import App from './src/app';
 AppRegistry.registerComponent('tech', ()=>App);
