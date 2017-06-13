@@ -1,9 +1,10 @@
-iport React, {Component} from 'react';
+import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {View,Text} from 'react-native';
 import {createStore} from 'redux';
 import reducers from './reducers';
 import firebase from 'firebase';
+import LoginForm from './common/LoginForm';
 class app extends Component{
   componentWillMount(){
     const config = {
@@ -18,13 +19,13 @@ class app extends Component{
   render()
   {
     return (
-      <Provider store={createStore(reducers)}
+      <Provider store={createStore(reducers)}>
       <View>
       <Text>
-      Hello
+      <LoginForm/>
       </Text>
       </View>
       </Provider>
-    )
+    );
   }
 }
