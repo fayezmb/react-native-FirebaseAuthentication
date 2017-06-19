@@ -1,31 +1,33 @@
-import React, {Component} from 'react';
-import {Provider} from 'react-redux';
-import {View,Text} from 'react-native';
-import {createStore} from 'redux';
-import reducers from './reducers';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
-import LoginForm from './common/LoginForm';
-class app extends Component{
-  componentWillMount(){
+import ReduxThunk from 'redux-thunk';
+import reducers from './reducers';
+import Router from './Router';
+
+class App extends Component {
+  componentWillMount() {
     const config = {
-  apiKey: "AIzaSyCm3oOzgVPvL0kDre0uGDpoilJZlV4kkr4",
-  authDomain: "manager-e563e.firebaseapp.com",
-  databaseURL: "https://manager-e563e.firebaseio.com",
-  projectId: "manager-e563e",
-  storageBucket: "manager-e563e.appspot.com",
-  messagingSenderId: "455979239315"
-};
+      apiKey: 'AIzaSyBR4FTGiOcTZ5OBNi6thE0KhCDR3PaOtQM',
+      authDomain: 'manager-2328b.firebaseapp.com',
+      databaseURL: 'https://manager-2328b.firebaseio.com',
+      storageBucket: 'manager-2328b.appspot.com',
+      messagingSenderId: '193075244299'
+    };
+
+    firebase.initializeApp(config);
   }
-  render()
-  {
+
+  render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
     return (
-      <Provider store={createStore(reducers)}>
-      <View>
-      <Text>
-      <LoginForm/>
-      </Text>
-      </View>
+      <Provider store={store}>
+        <Router />
       </Provider>
     );
   }
 }
+
+export default App;
